@@ -110,9 +110,9 @@ class GaussianDFTRun:
             Energy = []
 
             for line in lines:
-                    if line.find("SCF Done:  ") >=0:
-                            line_StateInfo = line.split()
-                            print (line_StateInfo[4])
+                if line.find("SCF Done:  ") >=0:
+                    line_StateInfo = line.split()
+                    print(line_StateInfo[4])
                     Energy.append(float(line_StateInfo[4]))
 
         #    return Energy
@@ -123,13 +123,13 @@ class GaussianDFTRun:
             V_OS = []
 
             for line in lines:
-                    if line.find("Excited State  ") >=0:
-                            line_StateInfo = line.split()
-                            print (line_StateInfo[6])
-                            WaveLength.append(float(line_StateInfo[6]))
-                            OS_info = line_StateInfo[8].split('=')
-                            print(OS_info[1])
-                            V_OS.append(float(OS_info[1]))
+                if line.find("Excited State  ") >=0:
+                    line_StateInfo = line.split()
+                    print (line_StateInfo[6])
+                    WaveLength.append(float(line_StateInfo[6]))
+                    OS_info = line_StateInfo[8].split('=')
+                    print(OS_info[1])
+                    V_OS.append(float(OS_info[1]))
 
         #    return WaveLength, V_OS
             output["uv"] = [WaveLength, V_OS]
@@ -148,7 +148,6 @@ class GaussianDFTRun:
 
         #    return Element, ppm 
             output["nmr"] = [Element, ppm]
-
 
         #print (output)
 
@@ -303,7 +302,7 @@ class GaussianDFTRun:
         os.chdir("..")
 #"""
 
-        return(self.Extract_values(logfile,nmr,uv,energy,gap,dipole))
+        return(self.Extract_values(PreGauInput[0]+'/'+logfile,nmr,uv,energy,gap,dipole))
 
 
 #####################To get cartesian coordinates from sdf file###############
